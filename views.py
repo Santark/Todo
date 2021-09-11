@@ -31,12 +31,11 @@ def createNewList():
     # handling 400 scenarios
 	if not isInt(userId): 
 	    abort(400)
-	return createNewList(userId, data, name)
+	return createListItem(userId, data, name)
 
 @app.route('/list', methods=['GET'])
 def getlistDetails():
-    user_id = getArgs(request, "userId")[0]
-    list_id = getArgs(request, "listId")[1]
+    user_id, list_id = getArgs(request, "userId", "listId")
     #handling 400 scenarios
     if not isInt(user_id):
         abort(400)
@@ -56,8 +55,7 @@ def handleUpdateExpense():
 
 @app.route('/list', methods=['DELETE'])
 def handleDeleteList():
-    user_id = getArgs(request, "userId")[0]
-    list_id = getArgs(request, "listId")[1]
+    user_id, list_id = getArgs(request, "userId", "listId")
     #handling 400 scenarios
     if not isInt(user_id):
         abort(400)
